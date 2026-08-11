@@ -193,39 +193,101 @@ if (statsSection) {
 }
 
 // ============================================
-// FORM VALIDATION (pour la page contact)
+// FORMULAIRE DE CONTACT (page contact)
 // ============================================
-const contactForm = document.querySelector('.contact-form');
+
+// Renseigner ici l'endpoint Formspree (ex. 'https://formspree.io/f/xxxxxxxx').
+// Tant qu'il est vide, le formulaire bascule sur un envoi par messagerie :
+// aucun message n'est perdu et rien n'est annoncé comme envoyé à tort.
+const FORM_ENDPOINT = '';
+const CONTACT_EMAIL = 'contact@musiva.fr';
+
+const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    const status = document.createElement('p');
+    status.className = 'form-status';
+    status.setAttribute('role', 'status');
+    status.style.cssText = 'margin-top:16px;padding:14px 18px;border-radius:8px;font-size:15px;display:none;';
+    contactForm.appendChild(status);
+
+    const showStatus = (message, ok) => {
+        status.innerHTML = message;
+        status.style.display = 'block';
+        status.style.background = ok ? '#e8f5e9' : '#fdecea';
+        status.style.color = ok ? '#2e7d32' : '#b3261e';
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        let isValid = true;
-        
-        // Validation simple
-        formData.forEach((value, key) => {
-            if (!value.trim()) {
-                isValid = false;
-                const input = contactForm.querySelector(`[name="${key}"]`);
-                input.style.borderColor = 'red';
+
+        const required = contactForm.querySelectorAll('[required]');
+        let firstInvalid = null;
+        required.forEach((field) => {
+            if (!field.value.trim()) {
+                field.style.borderColor = '#e74c3c';
+                if (!firstInvalid) firstInvalid = field;
             }
         });
-        
-        if (isValid) {
-            // Afficher un message de succès
-            alert('Message envoyé avec succès ! Nous vous recontacterons rapidement.');
+
+        if (firstInvalid) {
+            showStatus('Merci de renseigner tous les champs obligatoires.', false);
+            firstInvalid.focus();
+            return;
+        }
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const data = new FormData(contactForm);
+
+        if (!FORM_ENDPOINT) {
+            // Repli sans back-end : on ouvre le client de messagerie pré-rempli.
+            const corps = [...data.entries()]
+                .map(([cle, valeur]) => `${cle} : ${valeur}`)
+                .join('\n');
+            const sujet = `Demande depuis musiva.fr — ${data.get('sujet') || 'contact'}`;
+            window.location.href =
+                `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
+            showStatus(
+                `Votre logiciel de messagerie vient de s'ouvrir avec le message pré-rempli. ` +
+                `S'il ne s'ouvre pas, écrivez directement à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
+                true
+            );
+            return;
+        }
+
+        const initialLabel = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours…';
+        }
+
+        try {
+            const response = await fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                body: data,
+                headers: { Accept: 'application/json' }
+            });
+
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
             contactForm.reset();
-        } else {
-            alert('Veuillez remplir tous les champs obligatoires.');
+            showStatus('Message envoyé. Nous vous recontactons rapidement.', true);
+        } catch (error) {
+            showStatus(
+                `L'envoi a échoué. Écrivez-nous directement à ` +
+                `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> ou appelez le 06 52 81 38 22.`,
+                false
+            );
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = initialLabel;
+            }
         }
     });
-    
-    // Retirer la bordure rouge lors de la saisie
-    const formInputs = contactForm.querySelectorAll('input, textarea');
-    formInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.style.borderColor = '#e2e8f0';
+
+    contactForm.querySelectorAll('input, textarea, select').forEach((field) => {
+        field.addEventListener('input', () => {
+            field.style.borderColor = '#e2e8f0';
         });
     });
 }
