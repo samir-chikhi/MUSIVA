@@ -458,6 +458,14 @@
                     <p>Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais</p>
 
                     <form id="contactForm">
+                        <!-- Champs de service FormSubmit : objet du mail, mise en page, pas de captcha -->
+                        <input type="hidden" name="_subject" value="Nouvelle demande depuis musiva.fr">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <!-- Piège à robots : invisible pour un humain, rempli par les spambots -->
+                        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"
+                               style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
                         <div class="form-row">
                             <div class="form-group required">
                                 <label for="nom">Nom</label>

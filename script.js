@@ -196,10 +196,14 @@ if (statsSection) {
 // FORMULAIRE DE CONTACT (page contact)
 // ============================================
 
-// Renseigner ici l'endpoint Formspree (ex. 'https://formspree.io/f/xxxxxxxx').
-// Tant qu'il est vide, le formulaire bascule sur un envoi par messagerie :
-// aucun message n'est perdu et rien n'est annoncé comme envoyé à tort.
-const FORM_ENDPOINT = '';
+// Réception du formulaire : FormSubmit — aucun compte à créer, aucun mot de passe.
+// Le service transfère chaque message à CONTACT_EMAIL. Il s'active une seule fois :
+// au tout premier envoi, un mail de confirmation arrive dans la boîte, un clic suffit.
+// Ensuite tout passe directement.
+// Pour changer de prestataire (Formspree, Basin, Web3Forms…), il suffit de remplacer
+// cette seule ligne par l'URL que le service fournit. Si on la vide, le formulaire
+// bascule automatiquement sur un envoi par messagerie : aucun message n'est perdu.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/contact@musiva.fr';
 const CONTACT_EMAIL = 'contact@musiva.fr';
 
 const contactForm = document.getElementById('contactForm');
@@ -269,8 +273,30 @@ if (contactForm) {
 
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-            contactForm.reset();
-            showStatus('Message envoyé. Nous vous recontactons rapidement.', true);
+            // FormSubmit répond en JSON. Tant que l'adresse de réception n'a pas été
+            // confirmée, il renvoie success=false avec un message d'activation :
+            // c'est une étape normale, pas une panne — inutile d'alarmer le visiteur.
+            let payload = {};
+            try {
+                payload = await response.json();
+            } catch (_) {
+                payload = { success: 'true' };
+            }
+
+            const envoye = String(payload.success) !== 'false';
+
+            if (envoye) {
+                contactForm.reset();
+                showStatus('Message envoyé. Nous vous recontactons rapidement.', true);
+            } else {
+                showStatus(
+                    `Votre message a bien été transmis, mais la boîte de réception n'est pas ` +
+                    `encore activée. Si vous n'avez pas de retour sous 24 h, écrivez à ` +
+                    `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
+                    true
+                );
+                console.warn('FormSubmit : activation requise —', payload.message || payload);
+            }
         } catch (error) {
             showStatus(
                 `L'envoi a échoué. Écrivez-nous directement à ` +
