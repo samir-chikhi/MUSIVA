@@ -45,6 +45,13 @@
             color: #12273d;
             letter-spacing: 2px;
         }
+        .gate-logo img {
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 10px;
+            border-radius: 8px;
+        }
         .gate-logo span {
             display: block;
             font-size: 0.75rem;
@@ -121,9 +128,20 @@
         .portal-logo {
             font-family: 'Montserrat', sans-serif;
             color: #fff;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 12px;
+            align-items: center;
         }
-        .portal-logo .logo-text { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
-        .portal-logo .logo-subtitle { font-size: 0.75rem; opacity: 0.7; display: block; }
+        .portal-logo .logo-mark {
+            grid-row: 1 / span 2;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: block;
+        }
+        .portal-logo .logo-text { grid-column: 2; align-self: end; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+        .portal-logo .logo-subtitle { grid-column: 2; align-self: start; font-size: 0.75rem; opacity: 0.7; display: block; }
         .portal-logout {
             background: rgba(255,255,255,0.15);
             color: #fff;
@@ -267,6 +285,7 @@
     <div class="gate" id="gate">
         <div class="gate-card">
             <div class="gate-logo">
+                <img src="images/emblem-m.png" alt="" width="64" height="64">
                 MUSIVA
                 <span>Assembler les compétences, créer du sens</span>
             </div>
