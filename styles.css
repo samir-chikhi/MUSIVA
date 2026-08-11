@@ -1238,3 +1238,24 @@ section {
 .principle-icon {
     font-size: 15px;
 }
+
+/* Mention réglementaire organisme de formation */
+.nda-note {
+    padding: 22px 0;
+    background: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.nda-note p {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.nda-note a {
+    color: var(--accent-color);
+    font-weight: 600;
+}
