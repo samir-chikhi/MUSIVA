@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /espace-pro.html
+
+Sitemap: https://musiva.fr/sitemap.xml

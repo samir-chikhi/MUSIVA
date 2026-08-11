@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Pro - MUSIVA</title>
+    <meta name="description" content="Espace professionnel MUSIVA — accès réservé aux collaborateurs et partenaires.">
+    <link rel="canonical" href="https://musiva.fr/espace-pro.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MUSIVA">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Espace Pro - MUSIVA">
+    <meta property="og:description" content="Espace professionnel MUSIVA — accès réservé aux collaborateurs et partenaires.">
+    <meta property="og:url" content="https://musiva.fr/espace-pro.html">
+    <meta property="og:image" content="https://musiva.fr/images/logo-musiva-512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta name="theme-color" content="#12273d">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Gate (écran mot de passe) ── */
+        .gate {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #12273d 0%, #12273d 50%, #2e5c87 100%);
+        }
+        .gate-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+        .gate-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #12273d;
+            letter-spacing: 2px;
+        }
+        .gate-logo span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #666;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+        .gate-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #12273d;
+            margin: 28px 0 8px;
+        }
+        .gate-subtitle {
+            font-size: 0.875rem;
+            color: #888;
+            margin-bottom: 28px;
+        }
+        .gate-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+        .gate-input:focus { border-color: #2e5c87; }
+        .gate-btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 14px;
+            background: linear-gradient(135deg, #2e5c87, #1f7a80);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .gate-btn:hover { opacity: 0.9; }
+        .gate-error {
+            margin-top: 14px;
+            color: #e74c3c;
+            font-size: 0.875rem;
+            display: none;
+        }
+        .gate-hint {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+
+        /* ── Portail (contenu après connexion) ── */
+        .portal { display: none; }
+
+        .portal-header {
+            background: linear-gradient(135deg, #12273d 0%, #2e5c87 100%);
+            padding: 24px 0;
+        }
+        .portal-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .portal-logo {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+        }
+        .portal-logo .logo-text { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+        .portal-logo .logo-subtitle { font-size: 0.75rem; opacity: 0.7; display: block; }
+        .portal-logout {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+        .portal-logout:hover { background: rgba(255,255,255,0.25); }
+
+        .portal-hero {
+            background: linear-gradient(135deg, #12273d 0%, #2e5c87 100%);
+            padding: 48px 0 64px;
+            text-align: center;
+            color: #fff;
+        }
+        .portal-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .portal-hero p { opacity: 0.75; font-size: 1rem; }
+
+        .portal-body {
+            background: #f5f1e8;
+            min-height: 60vh;
+            padding: 56px 0;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .tool-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+        }
+        .tool-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .tool-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .tag-live { background: #e8f5e9; color: #2e7d32; }
+        .tag-soon { background: #fff3e0; color: #e65100; }
+        .tool-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #12273d;
+            margin-bottom: 10px;
+        }
+        .tool-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 24px;
+        }
+        .tool-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+            font-size: 0.82rem;
+            color: #555;
+        }
+        .tool-features li { padding: 4px 0; }
+        .tool-features li::before { content: "✓ "; color: #2e7d32; font-weight: 700; }
+        .tool-features li.soon::before { content: "○ "; color: #e65100; }
+        .tool-btn {
+            display: block;
+            text-align: center;
+            padding: 13px 24px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .tool-btn:hover { opacity: 0.88; }
+        .btn-cep {
+            background: linear-gradient(135deg, #6e8b4a, #93af6b);
+            color: #12273d;
+        }
+        .btn-disney {
+            background: #f0f0f0;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .portal-footer {
+            background: #12273d;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+        .portal-footer a { color: rgba(255,255,255,0.5); }
+
+        @media (max-width: 480px) {
+            .gate-card { padding: 36px 24px; margin: 16px; }
+            .portal-hero h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══ ÉCRAN MOT DE PASSE ══ -->
+    <div class="gate" id="gate">
+        <div class="gate-card">
+            <div class="gate-logo">
+                MUSIVA
+                <span>Assembler les compétences, créer du sens</span>
+            </div>
+            <p class="gate-title">Espace Professionnel</p>
+            <p class="gate-subtitle">Accès réservé aux collaborateurs et partenaires MUSIVA</p>
+            <input
+                class="gate-input"
+                type="password"
+                id="pwd-input"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
+            />
+            <button class="gate-btn" onclick="checkPassword()">Accéder →</button>
+            <p class="gate-error" id="gate-error">Mot de passe incorrect. Veuillez réessayer.</p>
+            <p class="gate-hint">Mot de passe fourni par MUSIVA</p>
+        </div>
+    </div>
+
+    <!-- ══ PORTAIL (après authentification) ══ -->
+    <div class="portal" id="portal">
+
+        <header class="portal-header">
+            <div class="container">
+                <div class="portal-logo">
+                    <img src="images/emblem-m.png" alt="" class="logo-mark" width="44" height="44"><span class="logo-text">MUSIVA</span>
+                    <span class="logo-subtitle">Espace Professionnel</span>
+                </div>
+                <a href="#" class="portal-logout" onclick="logout()">Déconnexion</a>
+            </div>
+        </header>
+
+        <section class="portal-hero">
+            <div class="container">
+                <h1>Vos Outils Professionnels</h1>
+                <p>Plateforme centralisée d'accès aux applications MUSIVA</p>
+            </div>
+        </section>
+
+        <section class="portal-body">
+            <div class="tools-grid">
+
+                <!-- CEP App -->
+                <div class="tool-card">
+                    <div class="tool-icon" style="background: linear-gradient(135deg, #6e8b4a, #93af6b);">🎯</div>
+                    <span class="tool-tag tag-live">● En ligne</span>
+                    <p class="tool-name">Application CEP</p>
+                    <p class="tool-desc">
+                        Outil de Conseil en Évolution Professionnelle pour la gestion des bénéficiaires,
+                        questionnaires et synthèses.
+                    </p>
+                    <ul class="tool-features">
+                        <li>Espace conseiller sécurisé</li>
+                        <li>Questionnaire bénéficiaire (16 questions)</li>
+                        <li>Grilles Schwartz, RIASEC, Guilford-Zimmerman</li>
+                        <li>Export PDF de synthèse</li>
+                        <li>Génération de liens personnalisés</li>
+                    </ul>
+                    <a href="https://cep-app-MUSIVA-production.up.railway.app/" target="_blank" class="tool-btn btn-cep">
+                        Ouvrir l'application →
+                    </a>
+                </div>
+
+                <!-- Disney Map -->
+                <div class="tool-card">
+                    <div class="tool-icon" style="background: linear-gradient(135deg, #b87333, #d9a441);">🗺️</div>
+                    <span class="tool-tag tag-soon">○ En développement</span>
+                    <p class="tool-name">Disney Map</p>
+                    <p class="tool-desc">
+                        Plateforme de restitution visuelle des bilans de compétences avec radar multi-axes
+                        et rapport PDF personnalisé.
+                    </p>
+                    <ul class="tool-features">
+                        <li>Visualisation radar multi-axes</li>
+                        <li class="soon">Rapport PDF personnalisé</li>
+                        <li class="soon">Interface admin conseiller</li>
+                        <li class="soon">Import CSV bénéficiaires</li>
+                        <li class="soon">Export Excel / PDF</li>
+                    </ul>
+                    <span class="tool-btn btn-disney">Bientôt disponible</span>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="portal-footer">
+            <p>&copy; 2026 MUSIVA — <a href="index.html">Retour au site</a></p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Mot de passe — modifiez cette valeur pour changer l'accès
+        const MOT_DE_PASSE = 'MUSIVA2026';
+
+        const SESSION_KEY = 'ccfa_pro_auth';
+
+        function checkPassword() {
+            const input = document.getElementById('pwd-input').value.trim();
+            if (input === MOT_DE_PASSE) {
+                sessionStorage.setItem(SESSION_KEY, '1');
+                showPortal();
+            } else {
+                document.getElementById('gate-error').style.display = 'block';
+                document.getElementById('pwd-input').value = '';
+                document.getElementById('pwd-input').focus();
+            }
+        }
+
+        function showPortal() {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('portal').style.display = 'block';
+        }
+
+        function logout() {
+            sessionStorage.removeItem(SESSION_KEY);
+            document.getElementById('gate').style.display = 'flex';
+            document.getElementById('portal').style.display = 'none';
+            document.getElementById('pwd-input').value = '';
+        }
+
+        // Connexion persistante pour la session en cours
+        if (sessionStorage.getItem(SESSION_KEY) === '1') {
+            showPortal();
+        }
+
+        // Valider avec Entrée
+        document.getElementById('pwd-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+    </script>
+
+</body>
+</html>
