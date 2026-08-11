@@ -12,5 +12,8 @@
   <url><loc>https://musiva.fr/service-management.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://musiva.fr/service-territorial.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://musiva.fr/service-createur.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://musiva.fr/service-numerique.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://musiva.fr/service-domiciliation.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://musiva.fr/service-tierslieu.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://musiva.fr/mentions-legales.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>

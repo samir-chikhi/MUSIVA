@@ -1201,3 +1201,40 @@ section {
         font-size: 17px;
     }
 }
+
+/* ============================================
+   ICÔNES — jeu SVG au trait (remplace les émojis)
+   ============================================ */
+.icon {
+    width: 1em;
+    height: 1em;
+    display: block;
+    flex: none;
+    stroke: currentColor;
+}
+
+/* Pastilles à fond dégradé : l'icône passe en négatif */
+.service-icon,
+.value-icon,
+.info-icon,
+.financement-icon,
+.tool-icon,
+.intro-visual,
+.features-grid .feature-icon,
+.benefit-icon {
+    color: #fff;
+}
+
+/* Visuel d'en-tête des pages service : trait plus fin à grande taille */
+.intro-visual {
+    font-size: 96px;
+}
+
+.intro-visual .icon {
+    stroke-width: 1.2;
+    opacity: 0.92;
+}
+
+.principle-icon {
+    font-size: 15px;
+}

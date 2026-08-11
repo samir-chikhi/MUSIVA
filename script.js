@@ -320,5 +320,5 @@ if (yearElement) {
 // ============================================
 // CONSOLE MESSAGE
 // ============================================
-console.log('%c🚀 Site MUSIVA - Développé avec attention', 'color: #12273d; font-size: 16px; font-weight: bold;');
+console.log('%cSite MUSIVA - Développé avec attention', 'color: #12273d; font-size: 16px; font-weight: bold;');
 console.log('%cPour toute question : contact@musiva.fr', 'color: #718096; font-size: 12px;');

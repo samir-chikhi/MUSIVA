@@ -115,83 +115,130 @@
             background: var(--bg-light);
         }
         
+        .timeline-intro {
+            max-width: 760px;
+            margin: 0 auto 24px;
+            text-align: center;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .timeline-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin-bottom: 48px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .timeline-legend span {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .timeline-legend span::before {
+            content: '';
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+        }
+
+        .timeline-legend .lg-engagement::before {
+            border-color: var(--tessera-teal);
+        }
+
+        /* Timeline à rail unique : lisible, et qui tient sur mobile
+           sans masquer d'entrées comme le faisait l'ancienne version. */
         .timeline {
-            max-width: 900px;
+            max-width: 820px;
             margin: 0 auto;
             position: relative;
+            padding-left: 46px;
         }
-        
+
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            left: 10px;
+            top: 12px;
+            bottom: 12px;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-color), var(--secondary-color));
             border-radius: 2px;
         }
-        
+
         .timeline-item {
-            display: grid;
-            grid-template-columns: 1fr 60px 1fr;
-            gap: 30px;
-            margin-bottom: 60px;
-            align-items: center;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content:first-child {
-            order: 3;
-            text-align: left;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content:last-child {
-            order: 1;
-            text-align: right;
-        }
-        
-        .timeline-date {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border: 4px solid var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 14px;
-            z-index: 2;
             position: relative;
+            margin-bottom: 26px;
         }
-        
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 26px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 0 5px var(--bg-light);
+        }
+
+        .timeline-item.engagement::before {
+            border-color: var(--tessera-teal);
+        }
+
         .timeline-content {
             background: white;
-            padding: 25px;
+            padding: 24px 28px;
             border-radius: 12px;
             box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--accent-color);
         }
-        
+
+        .timeline-item.engagement .timeline-content {
+            border-left-color: var(--tessera-teal);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+        }
+
+        .timeline-item.engagement .timeline-date {
+            color: var(--tessera-teal);
+        }
+
         .timeline-content h3 {
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             color: var(--text-dark);
         }
-        
+
         .timeline-content h4 {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--primary-color);
             font-weight: 600;
             margin-bottom: 12px;
         }
-        
+
         .timeline-content p {
             font-size: 14px;
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.7;
         }
-        
+
         .values-detail-section {
             padding: 80px 0;
             background: white;
@@ -243,25 +290,25 @@
                 grid-template-columns: 1fr;
             }
             
+            .timeline {
+                padding-left: 32px;
+            }
+
             .timeline::before {
-                left: 30px;
+                left: 6px;
             }
-            
-            .timeline-item {
-                grid-template-columns: 60px 1fr;
-                gap: 20px;
+
+            .timeline-item::before {
+                left: -32px;
+                width: 16px;
+                height: 16px;
+                border-width: 3px;
             }
-            
-            .timeline-item:nth-child(even) .timeline-content:first-child,
-            .timeline-item:nth-child(even) .timeline-content:last-child {
-                order: initial;
-                text-align: left;
+
+            .timeline-content {
+                padding: 20px 22px;
             }
-            
-            .timeline-content:first-child {
-                display: none;
-            }
-            
+
             .values-grid,
             .expertise-list {
                 grid-template-columns: 1fr;
@@ -299,6 +346,9 @@
                                 <li><a href="service-management.html">Management de Transition</a></li>
                                 <li><a href="service-territorial.html">Développement Territorial</a></li>
                                 <li><a href="service-createur.html">Accompagnement Créateur</a></li>
+                                <li><a href="service-numerique.html">Applications &amp; Numérique</a></li>
+                                <li><a href="service-domiciliation.html">Domiciliation d'Entreprise</a></li>
+                                <li><a href="service-tierslieu.html">Tiers-Lieu &amp; Coworking</a></li>
                             </ul>
                         </li>
                         <li><a href="tarifs.html">TARIFS</a></li>
@@ -313,7 +363,7 @@
     <section class="page-header">
         <div class="container">
             <h1>À Propos de MUSIVA</h1>
-            <p>27 ans d'expérience au service du développement territorial</p>
+            <p>30 ans d'expérience au service du développement territorial</p>
         </div>
     </section>
 
@@ -329,14 +379,27 @@
                     <h2>Samir Chikhi</h2>
                     <p class="founder-role">Fondateur &amp; Président de MUSIVA</p>
                     <p>
-                        Fort de <strong>27 années d'expérience</strong> dans le secteur public, l'économie sociale et solidaire, 
+                        Fort de <strong>30 années d'expérience</strong> dans le secteur public, l'économie sociale et solidaire
                         et le développement territorial, j'ai créé en 2020 le cabinet CCFA — devenu <strong>MUSIVA</strong> en 2026 —
                         pour accompagner les acteurs locaux dans leur structuration et leur professionnalisation.
                     </p>
                     <p>
-                        Mon parcours m'a permis d'occuper des fonctions de <strong>Directeur Général des Services</strong> de collectivités, 
-                        de <strong>directeur de structures ESS</strong> gérant des budgets allant jusqu'à 4,2 millions d'euros et des équipes 
+                        Mon parcours m'a permis d'occuper des fonctions de <strong>Directeur Général des Services</strong> de collectivités,
+                        de <strong>directeur de structures ESS</strong> gérant des budgets allant jusqu'à 4,2 millions d'euros et des équipes
                         de 55 personnes, ainsi que de <strong>chargé de mission</strong> sur des projets structurants (ANRU, fonds européens LEADER).
+                    </p>
+                    <p>
+                        Avant tout cela, il y a le scoutisme. <strong>Éclaireur de France de 1979 à 1989</strong>, puis
+                        <strong>cofondateur des Scouts Musulmans de France en 1991</strong>, commissaire général adjoint chargé de
+                        la formation et du développement national de 1995 à 1999, enfin président du mouvement de 2006 à 2008.
+                        Trente ans d'<strong>éducation populaire</strong> — c'est là que j'ai appris à former des adultes, à faire
+                        vivre une gouvernance collective et à confier des responsabilités réelles. Je n'ai jamais cessé de m'en servir.
+                    </p>
+                    <p>
+                        J'ajoute à cela une pratique assidue de l'informatique et du numérique. Je conçois moi-même les outils
+                        que je déploie chez mes clients, parce que je sais exactement à quoi ressemble le quotidien d'un secrétaire
+                        de mairie, d'un responsable qualité d'organisme de formation ou d'un trésorier d'association —
+                        <strong>je l'ai été</strong>.
                     </p>
                     <p>
                         Cette double expertise - opérationnelle et stratégique - me permet aujourd'hui d'accompagner mes clients 
@@ -345,27 +408,27 @@
                     
                     <div class="expertise-list">
                         <div class="expertise-item">
-                            <div class="expertise-icon">✓</div>
+                            <div class="expertise-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
                             <span>Auditeur Qualiopi Certifié</span>
                         </div>
                         <div class="expertise-item">
-                            <div class="expertise-icon">✓</div>
+                            <div class="expertise-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
                             <span>Évaluateur ESSMS</span>
                         </div>
                         <div class="expertise-item">
-                            <div class="expertise-icon">✓</div>
+                            <div class="expertise-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
                             <span>Consultant DLA Occitanie</span>
                         </div>
                         <div class="expertise-item">
-                            <div class="expertise-icon">✓</div>
+                            <div class="expertise-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
                             <span>Ex-DGS Collectivité</span>
                         </div>
                         <div class="expertise-item">
-                            <div class="expertise-icon">✓</div>
+                            <div class="expertise-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
                             <span>Expert Fonds Européens</span>
                         </div>
                         <div class="expertise-item">
-                            <div class="expertise-icon">✓</div>
+                            <div class="expertise-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
                             <span>Formateur Certifié</span>
                         </div>
                     </div>
@@ -378,88 +441,127 @@
     <section class="timeline-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Parcours Professionnel</h2>
+                <h2 class="section-title">Parcours</h2>
+            </div>
+            <p class="timeline-intro">
+                Deux fils courent en parallèle depuis quarante ans : les responsabilités professionnelles
+                et l'engagement dans l'éducation populaire. Ils ne se sont jamais séparés — le second explique
+                la manière dont j'exerce le premier.
+            </p>
+            <div class="timeline-legend">
+                <span class="lg-pro">Parcours professionnel</span>
+                <span class="lg-engagement">Engagement et éducation populaire</span>
             </div>
             <div class="timeline">
+
                 <div class="timeline-item">
                     <div class="timeline-content">
+                        <span class="timeline-date">2026</span>
                         <h3>CCFA devient MUSIVA</h3>
                         <h4>Nouvelle dénomination sociale</h4>
-                        <p>Changement de dénomination le 29 juin 2026, siège transféré au 12 rue du Génie à Montauban et objet social élargi aux tiers-lieux, à la domiciliation et aux outils numériques. <a href="notre-histoire.html">Lire notre histoire →</a></p>
+                        <p>Changement de dénomination le 29 juin 2026, siège transféré au 12 rue du Génie à Montauban, objet social élargi aux tiers-lieux, à la domiciliation d'entreprises et aux outils numériques. <a href="notre-histoire.html">Lire notre histoire →</a></p>
                     </div>
-                    <div class="timeline-date">2026</div>
-                    <div class="timeline-content"></div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-content"></div>
-                    <div class="timeline-date">2025</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
                         <h3>Création du tiers-lieu Le Génie</h3>
                         <h4>Montauban (82)</h4>
-                        <p>Ouverture d'un tiers-lieu ESS de 300 m² à 200 m de la gare : 12 espaces modulables, coworking, salles de réunion et Académie des Compétences.</p>
+                        <p>Ouverture d'un tiers-lieu ESS de 300 m² à 200 m de la gare : 12 espaces modulables, coworking, salles de réunion et Académie des Compétences. Gouvernance inspirée des SCOP — un adhérent, une voix.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
+                        <span class="timeline-date">2020</span>
                         <h3>Création de CCFA</h3>
                         <h4>Chikhi Conseil Formation Audit</h4>
                         <p>Lancement de l'activité de conseil, formation et audit. Missions d'ingénierie pédagogique, certification Qualiopi et accompagnement DLA.</p>
                     </div>
-                    <div class="timeline-date">2020</div>
-                    <div class="timeline-content"></div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-content"></div>
-                    <div class="timeline-date">2019-21</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2019 – 2021</span>
                         <h3>Directeur Général des Services</h3>
                         <h4>Mairie de Grisolles (82)</h4>
-                        <p>Pilotage stratégique et opérationnel. Budget 4,2M€, 55 agents. Gestion RH, finances, projets locaux et coopération institutionnelle.</p>
+                        <p>Pilotage stratégique et opérationnel d'une collectivité : budget de 4,2 M€, 72 agents. Ressources humaines, finances, projets locaux et coopération institutionnelle.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
+                        <span class="timeline-date">2016 – 2018</span>
                         <h3>Chargé de mission Fonds LEADER</h3>
                         <h4>PETR Garonne Quercy Gascogne</h4>
-                        <p>Animation territoriale sur 140 communes. Émergence et accompagnement de projets européens, formation des porteurs de projet.</p>
+                        <p>Animation territoriale sur 140 communes. Émergence et accompagnement de projets européens, formation des porteurs de projet au montage de dossiers.</p>
                     </div>
-                    <div class="timeline-date">2016-18</div>
-                    <div class="timeline-content"></div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-content"></div>
-                    <div class="timeline-date">2009-12</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2009 – 2012</span>
                         <h3>Directeur</h3>
-                        <h4>Régie de Quartier Bellefontaine - Toulouse</h4>
-                        <p>Direction d'une structure ESS de 1,1M€ et 55 salariés. Développement, consolidation partenariats et ancrage territorial.</p>
+                        <h4>Régie de Quartier Bellefontaine — Toulouse</h4>
+                        <p>Direction d'une structure de l'ESS de 1,1 M€ et 55 salariés. Développement de l'activité, consolidation des partenariats et ancrage territorial.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item engagement">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2006 – 2008</span>
+                        <h3>Président des Scouts Musulmans de France</h3>
+                        <h4>Association nationale d'éducation populaire</h4>
+                        <p>Direction politique du mouvement : orientations éducatives, représentation institutionnelle et consolidation du projet associatif.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
+                        <span class="timeline-date">2003 – 2007</span>
                         <h3>Chargé de mission ANRU</h3>
-                        <h4>Communauté Montauban Trois Rivières</h4>
-                        <p>Pilotage du projet de renouvellement urbain. Création de la clause d'insertion. Politique de l'emploi sur 11 communes.</p>
+                        <h4>Communauté d'Agglomération Montauban Trois Rivières</h4>
+                        <p>Pilotage du projet de renouvellement urbain, création de la clause d'insertion et politique de l'emploi sur 11 communes.</p>
                     </div>
-                    <div class="timeline-date">2003-07</div>
-                    <div class="timeline-content"></div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-content"></div>
-                    <div class="timeline-date">2001-09</div>
                     <div class="timeline-content">
-                        <h3>Directeur Adjoint</h3>
+                        <span class="timeline-date">2001 – 2009</span>
+                        <h3>Directeur adjoint</h3>
                         <h4>Régie de Quartier Montauban Services</h4>
-                        <p>Gestion quotidienne (RH, opérationnel, finances). Structure de 700K€ et 43 personnes. Interface équipes-direction.</p>
+                        <p>Gestion quotidienne d'une structure de 700 K€ et 43 personnes : ressources humaines, opérationnel, finances. Interface entre les équipes et la direction.</p>
                     </div>
                 </div>
+
+                <div class="timeline-item engagement">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1995 – 1999</span>
+                        <h3>Commissaire général adjoint des SMF</h3>
+                        <h4>Formation et développement national</h4>
+                        <p>Responsable de la formation des cadres et animateurs et du développement du mouvement sur le territoire national. C'est là que s'est forgée ma pratique de l'ingénierie pédagogique, bien avant d'en faire un métier.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item engagement">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1991</span>
+                        <h3>Cofondateur des Scouts Musulmans de France</h3>
+                        <h4>Création d'un mouvement de jeunesse</h4>
+                        <p>Participation à la fondation du mouvement : rédaction du projet éducatif, structuration associative et mise en place des premières unités.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item engagement">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1979 – 1989</span>
+                        <h3>Éclaireurs de France</h3>
+                        <h4>Scoutisme laïque — dix années de formation</h4>
+                        <p>Le point de départ. Dix ans dans un mouvement laïque d'éducation populaire : la vie en collectif, la responsabilité confiée tôt, l'apprentissage par le faire. Tout ce que je remets aujourd'hui au travail dans les organisations que j'accompagne vient de là.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -475,17 +577,17 @@
             </div>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">🎯</div>
+                    <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.2"/></svg></div>
                     <h3>Expertise Terrain</h3>
                     <p>
-                        Notre approche est ancrée dans 27 ans d'expérience opérationnelle. Nous ne conseillons pas 
+                        Notre approche est ancrée dans 30 ans d'expérience opérationnelle. Nous ne conseillons pas 
                         depuis un bureau : nous avons géré, dirigé, piloté les mêmes problématiques que vous rencontrez. 
                         Cette expertise éprouvée garantit des solutions pragmatiques et réalistes.
                     </p>
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></div>
                     <h3>Accompagnement Personnalisé</h3>
                     <p>
                         Chaque structure est unique. Nous prenons le temps de comprendre votre contexte, vos enjeux 
@@ -495,7 +597,7 @@
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon">🏛️</div>
+                    <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 21h19"/><path d="M5 21V10.5M9.5 21V10.5M14.5 21V10.5M19 21V10.5"/><path d="M2.5 10.5 12 4l9.5 6.5z"/></svg></div>
                     <h3>Ancrage Territorial</h3>
                     <p>
                         Basé à Montauban et intervenant principalement en Occitanie, nous connaissons les spécificités 
@@ -505,7 +607,7 @@
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon">💡</div>
+                    <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.3 18h5.4"/><path d="M10.2 21h3.6"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6v.5h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z"/></svg></div>
                     <h3>Innovation & Qualité</h3>
                     <p>
                         Nous combinons méthodes éprouvées et approches innovantes. Certifiés Qualiopi, nous nous 
@@ -553,7 +655,9 @@
                         <li><a href="service-ingenierie.html">Ingénierie de Formation</a></li>
                         <li><a href="service-audit.html">Audit Qualiopi</a></li>
                         <li><a href="service-essms.html">Évaluation ESSMS</a></li>
-                        <li><a href="service-bilan.html">Bilan de Compétences</a></li>
+                        <li><a href="service-numerique.html">Applications &amp; Numérique</a></li>
+                        <li><a href="service-domiciliation.html">Domiciliation d'Entreprise</a></li>
+                        <li><a href="service-tierslieu.html">Tiers-Lieu &amp; Coworking</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -561,9 +665,9 @@
                     <ul class="footer-links">
                         <li><a href="a-propos.html">À propos</a></li>
                         <li><a href="notre-histoire.html">Notre histoire</a></li>
-                        <li><a href="service-management.html">Management de Transition</a></li>
+                        <li><a href="tarifs.html">Nos Tarifs</a></li>
+                        <li><a href="service-bilan.html">Bilan de Compétences</a></li>
                         <li><a href="service-territorial.html">Développement Territorial</a></li>
-                                <li><a href="service-createur.html">Accompagnement Créateur</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
