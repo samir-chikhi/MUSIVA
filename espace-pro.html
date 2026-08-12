@@ -331,22 +331,24 @@
                 <!-- CEP App -->
                 <div class="tool-card">
                     <div class="tool-icon" style="background: linear-gradient(135deg, #6e8b4a, #93af6b);"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.2"/></svg></div>
-                    <span class="tool-tag tag-live">● En ligne</span>
+                    <span class="tool-tag tag-soon">○ Hors ligne</span>
                     <p class="tool-name">Application CEP</p>
                     <p class="tool-desc">
                         Outil de Conseil en Évolution Professionnelle pour la gestion des bénéficiaires,
                         questionnaires et synthèses.
                     </p>
                     <ul class="tool-features">
-                        <li>Espace conseiller sécurisé</li>
-                        <li>Questionnaire bénéficiaire (16 questions)</li>
-                        <li>Grilles Schwartz, RIASEC, Guilford-Zimmerman</li>
-                        <li>Export PDF de synthèse</li>
-                        <li>Génération de liens personnalisés</li>
+                        <li class="soon">Espace conseiller sécurisé</li>
+                        <li class="soon">Questionnaire bénéficiaire (16 questions)</li>
+                        <li class="soon">Grilles Schwartz, RIASEC, Guilford-Zimmerman</li>
+                        <li class="soon">Export PDF de synthèse</li>
+                        <li class="soon">Génération de liens personnalisés</li>
                     </ul>
-                    <a href="https://cep-app-MUSIVA-production.up.railway.app/" target="_blank" class="tool-btn btn-cep">
-                        Ouvrir l'application →
-                    </a>
+                    <!-- L'instance Railway répondait 404 : le lien est neutralisé jusqu'à
+                         redéploiement. Cette application traite des données de bénéficiaires
+                         (questionnaires, grilles psychométriques) : son authentification doit
+                         être côté serveur, pas derrière le mot de passe JavaScript de cette page. -->
+                    <span class="tool-btn btn-boussole">Instance à redéployer</span>
                 </div>
 
                 <!-- Boussole des Talents -->
