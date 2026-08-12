@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - MUSIVA | Conseil Formation Audit Montauban</title>
+    <title>Contacter MUSIVA à Montauban, devis sous 5 jours | MUSIVA</title>
     <meta name="description" content="Contactez MUSIVA à Montauban : 12 rue du Génie, 06 52 81 38 22, contact@musiva.fr. Formulaire, prise de rendez-vous et réponses aux questions fréquentes.">
     <link rel="canonical" href="https://musiva.fr/contact.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MUSIVA">
     <meta property="og:locale" content="fr_FR">
-    <meta property="og:title" content="Contact - MUSIVA | Conseil Formation Audit Montauban">
+    <meta property="og:title" content="Contacter MUSIVA à Montauban, devis sous 5 jours | MUSIVA">
     <meta property="og:description" content="Contactez MUSIVA à Montauban : 12 rue du Génie, 06 52 81 38 22, contact@musiva.fr. Formulaire, prise de rendez-vous et réponses aux questions fréquentes.">
     <meta property="og:url" content="https://musiva.fr/contact.html">
     <meta property="og:image" content="https://musiva.fr/images/logo-musiva-512.png">
@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <meta name="theme-color" content="#12273d">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
     <style>
         .contact-hero {
             background: linear-gradient(135deg, #12273d 0%, #2e5c87 100%);
@@ -319,6 +319,34 @@
             }
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous uniquement en Occitanie ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nous intervenons principalement en Occitanie (Tarn-et-Garonne, Haute-Garonne, Tarn, Lot, Gers), mais nous pouvons nous déplacer partout en France pour des missions spécifiques ou du management de transition." }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel est le délai pour obtenir un devis ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nous vous répondons généralement sous 48 h ouvrées. Après un premier échange téléphonique ou par courriel pour préciser votre besoin, nous vous adressons un devis détaillé sous 5 jours maximum." }
+        },
+        {
+          "@type": "Question",
+          "name": "Proposez-vous des financements pour vos formations ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui. Nos formations peuvent être prises en charge par votre OPCO, par le CPF pour les bilans de compétences, ou par d''autres dispositifs. Nous vous accompagnons dans le montage des dossiers de financement." }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps dure un accompagnement Qualiopi ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "La durée varie selon votre niveau de préparation initial. En moyenne, comptez 3 à 6 mois entre le premier audit blanc et la certification." }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Header / Navigation -->
@@ -438,13 +466,27 @@
                             Réservez directement un créneau pour un premier échange gratuit et sans engagement
                         </p>
                         
-                        <!-- Calendly inline widget begin -->
-                        <div class="calendly-inline-widget" 
-                             data-url="https://calendly.com/samir-chikhi?hide_event_type_details=1&hide_gdpr_banner=1" 
-                             style="min-width:320px;height:700px;">
+                        <!-- Calendly : chargé au clic seulement.
+                             Auparavant le widget se chargeait avec la page et déposait ses
+                             cookies sans consentement, bannière RGPD masquée. Désormais rien
+                             ne part chez Calendly tant que le visiteur n'a pas cliqué. -->
+                        <div id="calendly-placeholder" class="calendly-optin">
+                            <p>
+                                L'agenda est fourni par <strong>Calendly</strong>, un service tiers. En l'affichant,
+                                vous acceptez le dépôt de ses cookies et la transmission de votre adresse IP.
+                            </p>
+                            <button type="button" id="calendly-load" class="btn-primary">Afficher mes disponibilités</button>
+                            <p class="calendly-alt">
+                                Vous préférez éviter ? Écrivez à
+                                <a href="mailto:contact@musiva.fr" class="email-link">contact@musiva.fr</a>
+                                ou appelez le <a href="tel:+33652813822">06 52 81 38 22</a>.
+                            </p>
                         </div>
-                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                        <!-- Calendly inline widget end -->
+                        <div class="calendly-inline-widget"
+                             id="calendly-widget"
+                             data-url="https://calendly.com/samir-chikhi?hide_event_type_details=1&amp;hide_gdpr_banner=1"
+                             style="min-width:320px;height:700px;display:none;">
+                        </div>
                         
                         <p style="font-size: 13px; color: #a0aec0; margin-top: 15px; text-align: center;">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.3 18h5.4"/><path d="M10.2 21h3.6"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6v.5h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z"/></svg> Vous pouvez aussi nous contacter par email : <a href="mailto:contact@musiva.fr" class="email-link">contact@musiva.fr</a>

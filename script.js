@@ -348,3 +348,33 @@ if (yearElement) {
 // ============================================
 console.log('%cSite MUSIVA - Développé avec attention', 'color: #12273d; font-size: 16px; font-weight: bold;');
 console.log('%cPour toute question : contact@musiva.fr', 'color: #718096; font-size: 12px;');
+
+// ============================================
+// CALENDLY — chargement différé au clic (RGPD)
+// ============================================
+// Le widget n'est injecté qu'après action explicite du visiteur : aucune
+// requête vers assets.calendly.com, aucun cookie, tant qu'on n'a pas cliqué.
+const calendlyBtn = document.getElementById('calendly-load');
+if (calendlyBtn) {
+    calendlyBtn.addEventListener('click', () => {
+        const placeholder = document.getElementById('calendly-placeholder');
+        const widget = document.getElementById('calendly-widget');
+
+        calendlyBtn.disabled = true;
+        calendlyBtn.textContent = 'Chargement…';
+
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        script.onload = () => {
+            widget.style.display = 'block';
+            placeholder.style.display = 'none';
+        };
+        script.onerror = () => {
+            calendlyBtn.disabled = false;
+            calendlyBtn.textContent = 'Réessayer';
+            placeholder.querySelector('.calendly-alt').style.color = '#b3261e';
+        };
+        document.body.appendChild(script);
+    });
+}

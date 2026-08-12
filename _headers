@@ -1,0 +1,25 @@
+# En-têtes de sécurité HTTP.
+#
+# GitHub Pages ignore ce fichier : il n'est lu que par Netlify et Cloudflare Pages.
+# Il est versionné ici pour être opérationnel le jour où l'on passe le site
+# derrière Cloudflare (offre gratuite, GitHub Pages conservé en origine)
+# ou sur l'un de ces deux hébergeurs.
+#
+# Note sur la CSP : 'unsafe-inline' reste nécessaire pour script-src tant que
+# espace-pro.html embarque des gestionnaires inline (onclick) et son <script>.
+# Le jour où l'authentification passe côté serveur, on pourra le retirer.
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' data: https://*.calendly.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://calendly.com https://*.calendly.com; frame-src https://calendly.com https://*.calendly.com; form-action 'self' https://formsubmit.co
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000

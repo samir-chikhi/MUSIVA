@@ -1259,3 +1259,31 @@ section {
     color: var(--accent-color);
     font-weight: 600;
 }
+
+/* Encart de consentement Calendly */
+.calendly-optin {
+    background: var(--bg-light);
+    border: 1px dashed var(--border-color);
+    border-radius: 10px;
+    padding: 28px 24px;
+    text-align: center;
+}
+
+.calendly-optin p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 18px;
+}
+
+.calendly-optin .btn-primary {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.calendly-optin .calendly-alt {
+    margin: 18px 0 0;
+    font-size: 13px;
+}
