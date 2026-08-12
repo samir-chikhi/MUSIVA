@@ -1287,3 +1287,361 @@ section {
     margin: 18px 0 0;
     font-size: 13px;
 }
+
+/* ============================================
+   ARCHITECTURE PAR AUDIENCE
+   Accueil = routeur. Pages hub = 3 écrans.
+   ============================================ */
+
+/* --- Accueil : promesse unique, plus de carrousel --- */
+.router-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: #fff;
+    padding: 96px 0 88px;
+    text-align: center;
+}
+
+.router-hero h1 {
+    font-size: 46px;
+    line-height: 1.2;
+    max-width: 900px;
+    margin: 0 auto 22px;
+}
+
+.router-promise {
+    font-size: 19px;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+/* --- Les 4 portes --- */
+.doors-section {
+    padding: 72px 0 60px;
+    background: var(--bg-white);
+}
+
+.doors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+.door {
+    display: block;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--accent-color);
+    border-radius: 12px;
+    padding: 28px 30px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.door:nth-child(2) { border-left-color: var(--tessera-teal); }
+.door:nth-child(3) { border-left-color: var(--tessera-terracotta); }
+.door:nth-child(4) { border-left-color: var(--tessera-olive); }
+
+.door:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-color);
+}
+
+.door-label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.door:nth-child(2) .door-label { color: var(--tessera-teal); }
+.door:nth-child(3) .door-label { color: var(--tessera-terracotta); }
+.door:nth-child(4) .door-label { color: var(--tessera-olive); }
+
+.door h3 {
+    font-size: 23px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.door p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 14px;
+}
+
+.door-go {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.door-aside {
+    max-width: 940px;
+    margin: 30px auto 0;
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-light);
+}
+
+.door-aside a {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* --- Bandeau de preuve --- */
+.proof-band {
+    background: var(--bg-light);
+    padding: 52px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.proof-item {
+    text-align: center;
+}
+
+.proof-item strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    line-height: 1.35;
+}
+
+.proof-item span {
+    font-size: 13.5px;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* --- Pages hub : les 3 écrans --- */
+.hub-hero {
+    color: #fff;
+    padding: 88px 0 76px;
+}
+
+.hub-hero .container { max-width: 860px; }
+
+.hub-kicker {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 12px;
+}
+
+.hub-hero h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hub-problem {
+    font-size: 19px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hub-offer {
+    padding: 68px 0;
+    background: var(--bg-white);
+}
+
+.hub-offer .container { max-width: 900px; }
+
+.hub-offer h2,
+.hub-proof h2 {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.hub-lead {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 34px;
+}
+
+.offer-list {
+    display: grid;
+    gap: 16px;
+}
+
+.offer-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding: 22px 26px;
+    background: var(--bg-light);
+    border-radius: 10px;
+}
+
+.offer-row h3 {
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.offer-row p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-light);
+}
+
+.offer-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent-color);
+    white-space: nowrap;
+    text-align: right;
+}
+
+.offer-price small {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-top: 3px;
+}
+
+.hub-delay {
+    margin-top: 26px;
+    padding: 18px 24px;
+    border-left: 4px solid var(--accent-color);
+    background: var(--bg-light);
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.hub-proof {
+    padding: 68px 0 76px;
+    background: var(--bg-light);
+}
+
+.hub-proof .container { max-width: 900px; }
+
+.proof-quote {
+    background: var(--bg-white);
+    border-left: 5px solid var(--accent-color);
+    border-radius: 0 12px 12px 0;
+    padding: 30px 34px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 34px;
+}
+
+.proof-quote p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+}
+
+.proof-quote cite {
+    display: block;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.hub-cta {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.hub-cta .btn-primary-large {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.hub-cta .btn-primary-large:hover {
+    background: var(--secondary-color);
+}
+
+.hub-cta p {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* --- Aller plus loin : le détail ne s'impose pas, il se demande --- */
+.hub-deeper {
+    padding: 54px 0 64px;
+    background: var(--bg-white);
+}
+
+.hub-deeper .container { max-width: 900px; }
+
+.hub-deeper h2 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: 18px;
+}
+
+.deeper-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.deeper-links a {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background: var(--bg-light);
+}
+
+.deeper-links a:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+@media (max-width: 860px) {
+    .doors-grid,
+    .proof-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .router-hero { padding: 64px 0 58px; }
+    .router-hero h1 { font-size: 31px; }
+    .router-promise { font-size: 17px; }
+    .hub-hero h1 { font-size: 30px; }
+    .hub-problem { font-size: 17px; }
+
+    .offer-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .offer-price { text-align: left; }
+}

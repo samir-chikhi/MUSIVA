@@ -154,18 +154,34 @@ window.addEventListener('scroll', () => {
 // ============================================
 // COUNTER ANIMATION (Stats)
 // ============================================
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    const isDecimal = target.toString().includes('.');
-    
+// L'ancienne version nettoyait le texte avec /[^0-9.]/g avant de le parser :
+// « 4,2M€ » devenait 42 et « 100% » devenait 100, l'unité disparaissait à la
+// fin de l'animation. On isole désormais le nombre de son préfixe et de son
+// suffixe, et on les réapplique à chaque image.
+function animateCounter(element, duration = 2000) {
+    const original = element.textContent.trim();
+    const parts = original.match(/^(\D*?)(\d+(?:[.,]\d+)?)(.*)$/);
+    if (!parts) return;
+
+    const [, prefixe, nombreTexte, suffixe] = parts;
+    const separateur = nombreTexte.includes(',') ? ',' : '.';
+    const decimales = (nombreTexte.split(/[.,]/)[1] || '').length;
+    const cible = parseFloat(nombreTexte.replace(',', '.'));
+    if (isNaN(cible)) return;
+
+    const rendu = (valeur) =>
+        prefixe + valeur.toFixed(decimales).replace('.', separateur) + suffixe;
+
+    let courant = 0;
+    const pas = cible / (duration / 16);
+
     const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = isDecimal ? target.toFixed(1) : target;
+        courant += pas;
+        if (courant >= cible) {
+            element.textContent = original;
             clearInterval(timer);
         } else {
-            element.textContent = isDecimal ? start.toFixed(1) : Math.floor(start);
+            element.textContent = rendu(courant);
         }
     }, 16);
 }
@@ -178,11 +194,7 @@ const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !statsAnimated) {
             statsAnimated = true;
-            statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                const value = parseFloat(text.replace(/[^0-9.]/g, ''));
-                animateCounter(stat, value);
-            });
+            statNumbers.forEach(stat => animateCounter(stat));
         }
     });
 }, { threshold: 0.5 });
