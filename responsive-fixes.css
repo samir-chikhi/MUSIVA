@@ -1,0 +1,29 @@
+/* ============================================================
+   Corrections d'affichage mobile
+   ------------------------------------------------------------
+   Sur un écran de 390 px, certaines pages débordaient
+   horizontalement : le visiteur devait faire défiler la page
+   de gauche à droite pour lire le texte.
+
+   Causes traitées :
+     - les enfants de grilles CSS ne peuvent pas passer sous
+       leur largeur « min-content » tant que min-width vaut auto ;
+     - les tableaux sont plus larges que l'écran.
+   ============================================================ */
+
+html, body { overflow-x: clip; }
+body { overflow-wrap: break-word; }
+
+@media (max-width: 768px) {
+  [class*="grid"] > *,
+  aside { min-width: 0; }
+
+  aside[class*="sommaire"] { padding-right: 0; border-right: 0; }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

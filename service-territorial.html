@@ -38,15 +38,19 @@
       }
     }
     </script>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <style>.skip-link{position:absolute;left:-9999px;top:0;z-index:10000;background:#111;color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font:600 15px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:0}:focus-visible{outline:3px solid #2563eb;outline-offset:2px}</style>
+  <link rel="stylesheet" href="responsive-fixes.css">
 </head>
 <body>
-    <header class="main-header">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header id="contenu" class="main-header">
         <nav class="navbar">
             <div class="container">
                 <div class="nav-wrapper">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="images/emblem-m.png" alt="" class="logo-mark" width="44" height="44"><span class="logo-text">MUSIVA</span>
+                            <img src="images/emblem-m.png" alt="" class="logo-mark" width="44" height="44" fetchpriority="high"><span class="logo-text">MUSIVA</span>
                             <span class="logo-subtitle">Assembler les compétences, créer du sens</span>
                         </a>
                     </div>
@@ -167,7 +171,7 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="images/emblem-m.png" alt="" class="logo-mark" width="44" height="44"><span class="logo-text">MUSIVA</span>
+                        <img src="images/emblem-m.png" alt="" class="logo-mark" width="44" height="44" loading="lazy" decoding="async"><span class="logo-text">MUSIVA</span>
                         <span class="logo-subtitle">Assembler les compétences, créer du sens</span>
                     </div>
                     <p class="footer-contact">
