@@ -162,7 +162,7 @@ img {
 
 .nav-menu {
     display: flex;
-    gap: 30px;
+    gap: 16px;
     align-items: center;
 }
 
@@ -172,12 +172,13 @@ img {
 
 .nav-menu > li > a {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 10px 0;
+    letter-spacing: 0.3px;
+    padding: 8px 0;
     display: block;
+    white-space: nowrap;
 }
 
 .nav-menu > li > a:hover {
@@ -220,9 +221,11 @@ img {
 .btn-contact {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white !important;
-    padding: 12px 24px !important;
-    border-radius: 25px;
-    font-size: 13px !important;
+    padding: 8px 16px !important;
+    border-radius: 20px;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
 }
 
 .btn-contact:hover {
