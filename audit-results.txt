@@ -1,0 +1,37 @@
+=== AUDIT SEO MUSIVA ===
+
+1. VÉRIFICATION DES BALISES META
+=================================
+
+▶ index.html:
+  Title: Audit Qualiopi et évaluation ESSMS en Occitanie | MUSIVA
+  Meta description: MUSIVA (ex-CCFA) accompagne collectivités, associ... (194 chars)
+  ⚠️ LONG: Max 160 chars recommandé
+  H1 tags: 1
+  OG tags: 7
+
+▶ tarifs.html:
+  Title: Tarifs audit Qualiopi, ESSMS et bilan de compétences | MUSIVA
+  Meta description: Tarifs MUSIVA : audit Qualiopi, ingénierie de for... (155 chars)
+  H1 tags: 1
+  OG tags: 7
+
+▶ service-tierslieu.html:
+  Title: Coworking et tiers-lieu à Montauban, Le Génie | MUSIVA
+  Meta description: Le Génie, tiers-lieu MUSIVA à Montauban : 300 m�... (180 chars)
+  ⚠️ LONG: Max 160 chars recommandé
+  H1 tags: 1
+  OG tags: 7
+
+▶ service-numerique.html:
+  Title: Applications métier pour collectivités et associations | MUSIVA
+  Meta description: MUSIVA développe des applications métier pour le... (212 chars)
+  ⚠️ LONG: Max 160 chars recommandé
+  H1 tags: 1
+  OG tags: 7
+
+▶ contact.html:
+  Title: Contacter MUSIVA à Montauban, devis sous 5 jours | MUSIVA
+  Meta description: Contactez MUSIVA à Montauban : 12 rue du Génie, ... (157 chars)
+  H1 tags: 1
+  OG tags: 7
