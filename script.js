@@ -312,7 +312,7 @@ if (contactForm) {
         } catch (error) {
             showStatus(
                 `L'envoi a échoué. Écrivez-nous directement à ` +
-                `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> ou appelez le 06 52 81 38 22.`,
+                `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> ou appelez le 06 51 50 97 18.`,
                 false
             );
         } finally {
