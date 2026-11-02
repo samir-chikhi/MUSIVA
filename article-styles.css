@@ -69,7 +69,7 @@
 
 .res-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
     gap: 24px;
     max-width: 1040px;
     margin: 0 auto;
@@ -112,4 +112,7 @@
     .res-hero h1 { font-size: 29px; }
     .art h1 { font-size: 28px; }
     .art h2 { font-size: 22px; }
+    /* Tableau large : il défile dans son cadre au lieu d'élargir la page. */
+    .art-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .art-table th, .art-table td { padding: .6rem .7rem; }
 }

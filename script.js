@@ -12,9 +12,12 @@ if (mobileMenuToggle) {
     });
 }
 
-// Dropdown sur mobile
+// Dropdown sur mobile : seul le lien parent (« Vous êtes », « À propos ») ouvre
+// le sous-menu ; les liens du sous-menu doivent rester cliquables.
 dropdowns.forEach(dropdown => {
-    dropdown.addEventListener('click', (e) => {
+    const parentLink = dropdown.querySelector(':scope > a');
+    if (!parentLink) return;
+    parentLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
             dropdown.classList.toggle('active');
@@ -22,10 +25,11 @@ dropdowns.forEach(dropdown => {
     });
 });
 
-// Fermer le menu mobile quand on clique sur un lien
+// Fermer le menu mobile quand on clique sur un lien (sauf un lien parent de sous-menu)
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
+        if (link.matches('.dropdown > a')) return;
         if (window.innerWidth <= 768) {
             navMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');

@@ -712,4 +712,17 @@
     <script src="script.js"></script>
     <script>
         // FAQ Accordion
-        const faqItems = document.querySelectorA
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.setAttribute('role', 'button');
+            question.setAttribute('tabindex', '0');
+            const toggle = () => item.classList.toggle('active');
+            question.addEventListener('click', toggle);
+            question.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+            });
+        });
+    </script>
+</body>
+</html>

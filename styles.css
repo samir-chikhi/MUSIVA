@@ -905,6 +905,15 @@ section {
     .stat-number {
         font-size: 36px;
     }
+
+    .cta-content h2 {
+        font-size: 28px;
+    }
+}
+
+/* Les mots longs (« Accompagnement ») ne doivent jamais élargir la page sur téléphone. */
+h1, h2, h3 {
+    overflow-wrap: break-word;
 }
 
 /* ============================================
@@ -1769,4 +1778,31 @@ section {
     }
 
     .offer-price { text-align: left; }
+}
+
+/* --- Très petits téléphones (320 px, type iPhone SE) ---
+   Les cartes de grilles et de rangées flex refusent sinon de descendre
+   sous la largeur de leur contenu et élargissent la page. */
+@media (max-width: 380px) {
+    [class*="-grid"] > *,
+    [class*="-item"] > *,
+    [class*="-card"] > * {
+        min-width: 0;
+    }
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    h1, h2, h3 {
+        hyphens: auto;
+    }
+    .section-title {
+        font-size: 26px;
+    }
+    /* Icône au-dessus du texte : sinon il reste ~160 px pour le texte. */
+    .benefits-list .benefit-item {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 22px;
+    }
 }
